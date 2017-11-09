@@ -1,0 +1,9 @@
+﻿  CommandLineUI.cpp
+f:\schoolcode\lab4arraysort\multiarray.h(56): warning C4018: '<': signed/unsigned mismatch
+  f:\schoolcode\lab4arraysort\multiarray.h(55): note: while compiling class template member function 'void MultiArray<int>::getArray(void)'
+  f:\schoolcode\lab4arraysort\commandlineui.cpp(49): note: see reference to function template instantiation 'void MultiArray<int>::getArray(void)' being compiled
+  f:\schoolcode\lab4arraysort\commandlineui.cpp(43): note: see reference to class template instantiation 'MultiArray<int>' being compiled
+f:\schoolcode\lab4arraysort\multiarray.h(70): warning C4018: '>=': signed/unsigned mismatch
+  f:\schoolcode\lab4arraysort\multiarray.h(69): note: while compiling class template member function 'int &MultiArray<int>::operator [](int)'
+  f:\schoolcode\lab4arraysort\commandlineui.cpp(47): note: see reference to function template instantiation 'int &MultiArray<int>::operator [](int)' being compiled
+  Lab4ArraySort.vcxproj -> F:\schoolCode\Lab4ArraySort\Debug\Lab4ArraySort.exe
