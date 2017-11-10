@@ -28,7 +28,7 @@ public:
 	void setArray (unsigned int elem, T val);
 	void getArray ();
 
-	T &operator[] (int);
+	T &operator[] (unsigned int);
 	friend std::ostream& operator<< (std::ostream &foo, MultiArray<T> *ObjPtr);
 };
 
@@ -63,7 +63,7 @@ void MultiArray<T>::setArray (unsigned int elem, T val)
 template< class T >
 void MultiArray<T>::getArray ()
 {
-	for (int j = 0; j < size; j++)
+	for (unsigned int j = 0; j < size; j++)
 	{
 		// typeid will retriev a type for each value
 		std::cout << std::setw (7) << j << std::setw (13) << myarray[j]
@@ -75,7 +75,7 @@ void MultiArray<T>::getArray ()
 // Implementation of [] operator.  This function must return a
 // refernce as array element can be put on left side
 template< class T >
-T &MultiArray<T>::operator[](int index)
+T &MultiArray<T>::operator[](unsigned int index)
 {
 	if (index >= size)
 	{

@@ -29,5 +29,8 @@
     <ClInclude Include="MultiArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MultiSort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

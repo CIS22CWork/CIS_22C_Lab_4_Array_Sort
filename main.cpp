@@ -10,6 +10,7 @@ main
 */
 #include <iostream>
 #include "MultiArray.h"
+#include "MultiSort.h"
 #include "commandLineUI.h"
 
 using namespace std;

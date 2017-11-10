@@ -46,6 +46,7 @@ void CommandLineUI::enterLoop ()
 				cout << "Please enter int #" << i + 1 << ": ";
 				cin >> myarray[i];
 			}
+			MultiSort<int>::insertionSort (myarray, size);
 			myarray.getArray ();
 		} else if (dataType == "double")
 		{
@@ -55,6 +56,7 @@ void CommandLineUI::enterLoop ()
 				cout << "Please enter double #" << i + 1 << ": ";
 				cin >> myarray[i];
 			}
+			MultiSort<double>::insertionSort (myarray, size);
 			myarray.getArray ();
 		}
 		else if (dataType == "char")
@@ -65,6 +67,7 @@ void CommandLineUI::enterLoop ()
 				cout << "Please enter char #" << i + 1 << ": ";
 				cin >> myarray[i];
 			}
+			MultiSort<char>::insertionSort (myarray, size);
 			myarray.getArray ();
 		}
 		else if (dataType == "string")
@@ -76,6 +79,7 @@ void CommandLineUI::enterLoop ()
 				cout << "Please enter string #" << i + 1 << ": ";
 				getline (cin, myarray[i]);
 			}
+			MultiSort<string>::insertionSort (myarray, size);
 			myarray.getArray ();
 		}
 	}
@@ -86,6 +90,13 @@ void CommandLineUI::enterLoop ()
 //******************************************************
 template< class T >
 std::ostream& operator<< (std::ostream &foo, MultiArray<T> *ObjPtr)
+{
+	foo << "hey";
+	return foo;
+}
+
+template< class T >
+std::ostream& operator<< (std::ostream &foo, MultiSort<T> *ObjPtr)
 {
 	foo << "hey";
 	return foo;

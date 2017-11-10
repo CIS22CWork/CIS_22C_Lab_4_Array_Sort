@@ -5,6 +5,7 @@
 #include <sstream>
 #include <limits>
 #include "MultiArray.h"
+#include "MultiSort.h"
 
 class CommandLineUI
 {
