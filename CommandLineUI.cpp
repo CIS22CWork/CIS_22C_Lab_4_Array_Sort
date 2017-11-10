@@ -46,9 +46,19 @@ void CommandLineUI::enterLoop ()
 				cout << "Please enter int #" << i + 1 << ": ";
 				cin >> myarray[i];
 			}
+			MultiArray<int> myarray1 (myarray);
+			MultiArray<int> myarray2 (myarray);
+			cout << "Insertion Sort" << endl;
 			MultiSort<int>::insertionSort (myarray, size);
 			myarray.getArray ();
-		} else if (dataType == "double")
+			cout << "Quick Sort" << endl;
+			MultiSort<int>::quickSort (myarray1, 0, size - 1);
+			myarray1.getArray ();
+			cout << "Merge Sort" << endl;
+			MultiSort<int>::mergeSort (myarray2, 0, size - 1);
+			myarray2.getArray ();
+		}
+		else if (dataType == "double")
 		{
 			MultiArray<double> myarray (size);
 			for (i = 0; i < size; i++)
@@ -56,8 +66,17 @@ void CommandLineUI::enterLoop ()
 				cout << "Please enter double #" << i + 1 << ": ";
 				cin >> myarray[i];
 			}
+			MultiArray<double> myarray1 (myarray);
+			MultiArray<double> myarray2 (myarray);
+			cout << "Insertion Sort" << endl;
 			MultiSort<double>::insertionSort (myarray, size);
 			myarray.getArray ();
+			cout << "Quick Sort" << endl;
+			MultiSort<double>::quickSort (myarray1, 0, size - 1);
+			myarray1.getArray ();
+			cout << "Merge Sort" << endl;
+			MultiSort<double>::mergeSort (myarray2, 0, size - 1);
+			myarray2.getArray ();
 		}
 		else if (dataType == "char")
 		{
@@ -67,8 +86,17 @@ void CommandLineUI::enterLoop ()
 				cout << "Please enter char #" << i + 1 << ": ";
 				cin >> myarray[i];
 			}
+			MultiArray<char> myarray1 (myarray);
+			MultiArray<char> myarray2 (myarray);
+			cout << "Insertion Sort" << endl;
 			MultiSort<char>::insertionSort (myarray, size);
 			myarray.getArray ();
+			cout << "Quick Sort" << endl;
+			MultiSort<char>::quickSort (myarray1, 0, size - 1);
+			myarray1.getArray ();
+			cout << "Merge Sort" << endl;
+			MultiSort<char>::mergeSort (myarray2, 0, size - 1);
+			myarray2.getArray ();
 		}
 		else if (dataType == "string")
 		{
@@ -79,8 +107,17 @@ void CommandLineUI::enterLoop ()
 				cout << "Please enter string #" << i + 1 << ": ";
 				getline (cin, myarray[i]);
 			}
+			MultiArray<string> myarray1 (myarray);
+			MultiArray<string> myarray2 (myarray);
+			cout << "Insertion Sort" << endl;
 			MultiSort<string>::insertionSort (myarray, size);
 			myarray.getArray ();
+			cout << "Quick Sort" << endl;
+			MultiSort<string>::quickSort (myarray1, 0, size - 1);
+			myarray1.getArray ();
+			cout << "Merge Sort" << endl;
+			MultiSort<string>::mergeSort (myarray2, 0, size - 1);
+			myarray2.getArray ();
 		}
 	}
 }

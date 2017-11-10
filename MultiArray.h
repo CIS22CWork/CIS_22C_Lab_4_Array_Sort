@@ -24,6 +24,7 @@ private:
 public:
 	MultiArray ();
 	MultiArray (unsigned int s);
+	MultiArray (const MultiArray<T> &target);
 	virtual ~MultiArray ();
 	void setArray (unsigned int elem, T val);
 	void getArray ();
@@ -42,6 +43,15 @@ MultiArray<T>::MultiArray (unsigned int s)
 {
 	size = s;
 	myarray = new T[size];
+}
+
+template< class T >
+MultiArray<T>::MultiArray (const MultiArray<T> &target)
+{
+	size = target.size;
+	myarray = new T[size];
+	for (unsigned i = 0; i < target.size; i++)
+		myarray[i] = target.myarray[i];
 }
 
 template< class T >
