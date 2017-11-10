@@ -10,6 +10,7 @@
 class CommandLineUI
 {
 private:
+	static const int SORT_MAX_SIZE = 32;
 public:
 	CommandLineUI ();
 	static void enterLoop ();

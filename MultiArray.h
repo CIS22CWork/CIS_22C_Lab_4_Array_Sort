@@ -11,9 +11,11 @@ MultiArray class
 #ifndef MULTI_ARRAY_H
 #define MULTI_ARRAY_H
 
+#include <string>
 #include <iostream>
 #include <iomanip>
 #include <typeinfo>
+#include <sstream>
 
 template< class T >
 class MultiArray
@@ -26,8 +28,8 @@ public:
 	MultiArray (unsigned int s);
 	MultiArray (const MultiArray<T> &target);
 	virtual ~MultiArray ();
-	void setArray (unsigned int elem, T val);
-	void getArray ();
+	void setValue (unsigned int elem, T val);
+	std::string toString ();
 
 	T &operator[] (unsigned int);
 	friend std::ostream& operator<< (std::ostream &foo, MultiArray<T> *ObjPtr);
@@ -64,22 +66,23 @@ MultiArray<T>::~MultiArray ()
 // calss array member function to set element of myarray 
 // with type T values
 template< class T >
-void MultiArray<T>::setArray (unsigned int elem, T val)
+void MultiArray<T>::setValue (unsigned int elem, T val)
 {
 	myarray[elem] = val;
 }
 
 // for loop to display all elements of an array
 template< class T >
-void MultiArray<T>::getArray ()
+std::string MultiArray<T>::toString ()
 {
+	std::stringstream ss;
 	for (unsigned int j = 0; j < size; j++)
 	{
-		// typeid will retriev a type for each value
-		std::cout << std::setw (7) << j << std::setw (13) << myarray[j]
-			<< " type: " << typeid(myarray[j]).name () << std::endl;
+		// typeid will retrieve a type for each value
+		ss << std::setw (7) << left << j << myarray[j] << std::endl;
 	}
-	std::cout << "-----------------------------" << endl;
+	ss << "-----------------------------" << endl;
+	return ss.str ();
 }
 
 // Implementation of [] operator.  This function must return a

@@ -30,12 +30,18 @@ void CommandLineUI::enterLoop ()
 	bool loopActive = true;
 	unsigned int size;
 	unsigned int i;
-	string dataType;
+	string dataType, log0, log1, log2;
 	//cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
 	while (loopActive)
 	{
+		log0, log1, log2 = "";
 		cout << "Please enter the size of the array: ";
 		cin >> size;
+		if (size > SORT_MAX_SIZE)
+		{
+			cout << "Size may not exceed " << SORT_MAX_SIZE << endl;
+			continue;
+		}
 		cout << "What is the data type (int/double/char/string):";
 		cin >> dataType;
 		if (dataType == "int")
@@ -48,15 +54,12 @@ void CommandLineUI::enterLoop ()
 			}
 			MultiArray<int> myarray1 (myarray);
 			MultiArray<int> myarray2 (myarray);
-			cout << "Insertion Sort" << endl;
-			MultiSort<int>::insertionSort (myarray, size);
-			myarray.getArray ();
-			cout << "Quick Sort" << endl;
-			MultiSort<int>::quickSort (myarray1, 0, size - 1);
-			myarray1.getArray ();
-			cout << "Merge Sort" << endl;
-			MultiSort<int>::mergeSort (myarray2, 0, size - 1);
-			myarray2.getArray ();
+			MultiSort<int>::insertionSort (myarray, size, log0);
+			MultiSort<int>::quickSort (myarray1, 0, size - 1, log1);
+			MultiSort<int>::mergeSort (myarray2, 0, size - 1, log2);
+			cout << "Insertion Sort" << endl << log0 << endl;
+			cout << "Quick Sort" << endl << log1 << endl;
+			cout << "Merge Sort" << endl << log2 << endl;
 		}
 		else if (dataType == "double")
 		{
@@ -68,15 +71,12 @@ void CommandLineUI::enterLoop ()
 			}
 			MultiArray<double> myarray1 (myarray);
 			MultiArray<double> myarray2 (myarray);
-			cout << "Insertion Sort" << endl;
-			MultiSort<double>::insertionSort (myarray, size);
-			myarray.getArray ();
-			cout << "Quick Sort" << endl;
-			MultiSort<double>::quickSort (myarray1, 0, size - 1);
-			myarray1.getArray ();
-			cout << "Merge Sort" << endl;
-			MultiSort<double>::mergeSort (myarray2, 0, size - 1);
-			myarray2.getArray ();
+			MultiSort<double>::insertionSort (myarray, size, log0);
+			MultiSort<double>::quickSort (myarray1, 0, size - 1, log1);
+			MultiSort<double>::mergeSort (myarray2, 0, size - 1, log2);
+			cout << "Insertion Sort" << endl << log0 << endl;
+			cout << "Quick Sort" << endl << log1 << endl;
+			cout << "Merge Sort" << endl << log2 << endl;
 		}
 		else if (dataType == "char")
 		{
@@ -88,15 +88,12 @@ void CommandLineUI::enterLoop ()
 			}
 			MultiArray<char> myarray1 (myarray);
 			MultiArray<char> myarray2 (myarray);
-			cout << "Insertion Sort" << endl;
-			MultiSort<char>::insertionSort (myarray, size);
-			myarray.getArray ();
-			cout << "Quick Sort" << endl;
-			MultiSort<char>::quickSort (myarray1, 0, size - 1);
-			myarray1.getArray ();
-			cout << "Merge Sort" << endl;
-			MultiSort<char>::mergeSort (myarray2, 0, size - 1);
-			myarray2.getArray ();
+			MultiSort<char>::insertionSort (myarray, size, log0);
+			MultiSort<char>::quickSort (myarray1, 0, size - 1, log1);
+			MultiSort<char>::mergeSort (myarray2, 0, size - 1, log2);
+			cout << "Insertion Sort" << endl << log0 << endl;
+			cout << "Quick Sort" << endl << log1 << endl;
+			cout << "Merge Sort" << endl << log2 << endl;
 		}
 		else if (dataType == "string")
 		{
@@ -109,15 +106,12 @@ void CommandLineUI::enterLoop ()
 			}
 			MultiArray<string> myarray1 (myarray);
 			MultiArray<string> myarray2 (myarray);
-			cout << "Insertion Sort" << endl;
-			MultiSort<string>::insertionSort (myarray, size);
-			myarray.getArray ();
-			cout << "Quick Sort" << endl;
-			MultiSort<string>::quickSort (myarray1, 0, size - 1);
-			myarray1.getArray ();
-			cout << "Merge Sort" << endl;
-			MultiSort<string>::mergeSort (myarray2, 0, size - 1);
-			myarray2.getArray ();
+			MultiSort<string>::insertionSort (myarray, size, log0);
+			MultiSort<string>::quickSort (myarray1, 0, size - 1, log1);
+			MultiSort<string>::mergeSort (myarray2, 0, size - 1, log2);
+			cout << "Insertion Sort" << endl << log0 << endl;
+			cout << "Quick Sort" << endl << log1 << endl;
+			cout << "Merge Sort" << endl << log2 << endl;
 		}
 	}
 }

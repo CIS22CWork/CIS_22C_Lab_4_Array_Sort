@@ -20,35 +20,39 @@ private:
 	T* myarray;
 	unsigned int size;
 public:
-	static void insertionSort (MultiArray<T> &arr, unsigned int n);
+	static void insertionSort (MultiArray<T> &arr, int n, std::string &log);
 	static int partition (MultiArray<T> &arr, int low, int high);
-	static void quickSort (MultiArray<T> &arr, int low, int high);
+	static void quickSort (MultiArray<T> &arr, int low, int high, std::string &log);
 	static void merge (MultiArray<T> &arr, int l, int m, int r);
-	static void mergeSort (MultiArray<T> &arr, int l, int r);
+	static void mergeSort (MultiArray<T> &arr, int l, int r, std::string &log);
 };
 
 /* Function to sort an array using insertion sort*/
 template< class T >
-void MultiSort<T>::insertionSort (MultiArray<T> &arr, unsigned int size)
+void MultiSort<T>::insertionSort (MultiArray<T> &arr, int n, std::string &log)
 {
-	int i, j;
-	int n = (int)size;
-	T key;
-	for (i = 1; i < n; i++)
-	{
-		key = arr[i];
-		j = i - 1;
+	// Base case
+	if (n <= 1)
+		return;
 
-		/* Move elements of arr[0..i-1], that are
-		greater than key, to one position ahead
-		of their current position */
-		while (j >= 0 && arr[j] > key)
-		{
-			arr[j + 1] = arr[j];
-			j = j - 1;
-		}
-		arr[j + 1] = key;
+	// Sort first n-1 elements
+	insertionSort (arr, n - 1, log);
+
+	// Insert last element at its correct position
+	// in sorted array.
+	T last = arr[n - 1];
+	int j = n - 2;
+
+	/* Move elements of arr[0..i-1], that are
+	greater than key, to one position ahead
+	of their current position */
+	while (j >= 0 && arr[j] > last)
+	{
+		arr[j + 1] = arr[j];
+		j--;
 	}
+	arr[j + 1] = last;
+	log += arr.toString ();
 }
 /* This function takes last element as pivot, places
 the pivot element at its correct position in sorted
@@ -85,7 +89,7 @@ arr[] --> Array to be sorted,
 low  --> Starting index,
 high  --> Ending index */
 template< class T >
-void MultiSort<T>::quickSort (MultiArray<T> &arr, int low, int high)
+void MultiSort<T>::quickSort (MultiArray<T> &arr, int low, int high, std::string &log)
 {
 	if (low < high)
 	{
@@ -95,9 +99,10 @@ void MultiSort<T>::quickSort (MultiArray<T> &arr, int low, int high)
 
 		// Separately sort elements before
 		// partition and after partition
-		quickSort (arr, low, pi - 1);
-		quickSort (arr, pi + 1, high);
+		quickSort (arr, low, pi - 1, log);
+		quickSort (arr, pi + 1, high, log);
 	}
+	log += arr.toString ();
 }
 
 // Merges two subarrays of arr[].
@@ -161,7 +166,7 @@ void MultiSort<T>::merge (MultiArray<T> &arr, int l, int m, int r)
 /* l is for left index and r is right index of the
 sub-array of arr to be sorted */
 template< class T >
-void MultiSort<T>::mergeSort (MultiArray<T> &arr, int l, int r)
+void MultiSort<T>::mergeSort (MultiArray<T> &arr, int l, int r, std::string &log)
 {
 	if (l < r)
 	{
@@ -170,10 +175,11 @@ void MultiSort<T>::mergeSort (MultiArray<T> &arr, int l, int r)
 		int m = l + (r - l) / 2;
 
 		// Sort first and second halves
-		mergeSort (arr, l, m);
-		mergeSort (arr, m + 1, r);
+		mergeSort (arr, l, m, log);
+		mergeSort (arr, m + 1, r, log);
 
 		merge (arr, l, m, r);
 	}
+	log += arr.toString ();
 }
 #endif
