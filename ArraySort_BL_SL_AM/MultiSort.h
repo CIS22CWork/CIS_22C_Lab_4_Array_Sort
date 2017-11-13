@@ -6,7 +6,7 @@ Lab 4
 
 Used Microsoft Visual Studio 2017
 
-MultiArray class
+MultiSort class
 */
 #ifndef MULTI_SORT_H
 #define MULTI_SORT_H
@@ -27,7 +27,14 @@ public:
 	static void mergeSort (MultiArray<T> &arr, int l, int r, std::string &log);
 };
 
-/* Function to sort an array using insertion sort*/
+/* Recursive Insertion Algorithm
+@pre None
+@post outputs array contents to log at each recursion depth
+@param arr the template array
+@param n the size of the array
+@param log step log
+@return None
+*/
 template< class T >
 void MultiSort<T>::insertionSort (MultiArray<T> &arr, int n, std::string &log)
 {

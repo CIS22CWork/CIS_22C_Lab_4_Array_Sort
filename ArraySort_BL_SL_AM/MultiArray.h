@@ -7,6 +7,7 @@ Lab 4
 Used Microsoft Visual Studio 2017
 
 MultiArray class
+A template array that may be instantiated as any type
 */
 #ifndef MULTI_ARRAY_H
 #define MULTI_ARRAY_H
@@ -35,11 +36,13 @@ public:
 	friend std::ostream& operator<< (std::ostream &foo, MultiArray<T> *ObjPtr);
 };
 
+//******************************************************
+// constructors and destructors       
+//******************************************************
 template< class T >
 MultiArray<T>::MultiArray ()
 {
 }
-
 template< class T >
 MultiArray<T>::MultiArray (unsigned int s)
 {
@@ -47,6 +50,7 @@ MultiArray<T>::MultiArray (unsigned int s)
 	myarray = new T[size];
 }
 
+/* copy constructor */
 template< class T >
 MultiArray<T>::MultiArray (const MultiArray<T> &target)
 {
@@ -62,31 +66,42 @@ MultiArray<T>::~MultiArray ()
 
 }
 
-// constructor with user pre-defined size
-// calss array member function to set element of myarray 
-// with type T values
+/* sets index value
+@pre None
+@post sets array element
+@param elem array index
+@param val value to store
+@return None
+*/
 template< class T >
 void MultiArray<T>::setValue (unsigned int elem, T val)
 {
 	myarray[elem] = val;
 }
 
-// for loop to display all elements of an array
+/* displays all elements of the array
+@pre None
+@post standard output of array contents
+@return None
+*/
 template< class T >
 std::string MultiArray<T>::toString ()
 {
 	std::stringstream ss;
 	for (unsigned int j = 0; j < size; j++)
 	{
-		// typeid will retrieve a type for each value
 		ss << std::setw (7) << left << j << myarray[j] << std::endl;
 	}
 	ss << "-----------------------------" << endl;
 	return ss.str ();
 }
 
-// Implementation of [] operator.  This function must return a
-// refernce as array element can be put on left side
+/*subscript [] operator overload makes the template behave like an array
+@pre index is less than the size
+@post None
+@param index the position in the array
+@return return the element at the index
+*/
 template< class T >
 T &MultiArray<T>::operator[](unsigned int index)
 {
