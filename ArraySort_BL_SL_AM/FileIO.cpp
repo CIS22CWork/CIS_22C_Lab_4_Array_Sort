@@ -1,5 +1,8 @@
 #include "FileIO.h"
-
+//@Pre None
+//@Post None
+//@Param string str and string filePath
+//@Return bool
 bool FileIO::strToFile (std::string str, std::string filePath)
 {
 	bool flag = false;

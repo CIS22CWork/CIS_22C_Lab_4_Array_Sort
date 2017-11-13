@@ -23,6 +23,9 @@ CommandLineUI::CommandLineUI ()
 // CommandLineUI::enterLoop  
 //      
 // the main menu UI loop
+// Pre: None
+// Post: None
+// Purpose: Command Line to interact with the user
 //******************************************************
 void CommandLineUI::enterLoop ()
 {
