@@ -112,10 +112,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CommandLineUI.cpp" />
+    <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandLineUI.h" />
+    <ClInclude Include="FileIO.h" />
     <ClInclude Include="MultiArray.h" />
     <ClInclude Include="MultiSort.h" />
   </ItemGroup>

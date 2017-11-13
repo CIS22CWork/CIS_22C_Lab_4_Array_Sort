@@ -1,0 +1,126 @@
+Insertion Sort
+0      a
+1      have
+2      good
+3      day
+4      friend!
+-----------------------------
+0      a
+1      good
+2      have
+3      day
+4      friend!
+-----------------------------
+0      a
+1      day
+2      good
+3      have
+4      friend!
+-----------------------------
+0      a
+1      day
+2      friend!
+3      good
+4      have
+-----------------------------
+
+Quick Sort
+0      a
+1      day
+2      friend!
+3      have
+4      good
+-----------------------------
+0      a
+1      day
+2      friend!
+3      have
+4      good
+-----------------------------
+0      a
+1      day
+2      friend!
+3      have
+4      good
+-----------------------------
+0      a
+1      day
+2      friend!
+3      good
+4      have
+-----------------------------
+0      a
+1      day
+2      friend!
+3      good
+4      have
+-----------------------------
+0      a
+1      day
+2      friend!
+3      good
+4      have
+-----------------------------
+0      a
+1      day
+2      friend!
+3      good
+4      have
+-----------------------------
+
+Merge Sort
+0      have
+1      a
+2      good
+3      day
+4      friend!
+-----------------------------
+0      have
+1      a
+2      good
+3      day
+4      friend!
+-----------------------------
+0      a
+1      have
+2      good
+3      day
+4      friend!
+-----------------------------
+0      a
+1      have
+2      good
+3      day
+4      friend!
+-----------------------------
+0      a
+1      good
+2      have
+3      day
+4      friend!
+-----------------------------
+0      a
+1      good
+2      have
+3      day
+4      friend!
+-----------------------------
+0      a
+1      good
+2      have
+3      day
+4      friend!
+-----------------------------
+0      a
+1      good
+2      have
+3      day
+4      friend!
+-----------------------------
+0      a
+1      day
+2      friend!
+3      good
+4      have
+-----------------------------
+

@@ -30,20 +30,39 @@ void CommandLineUI::enterLoop ()
 	bool loopActive = true;
 	unsigned int size;
 	unsigned int i;
+	std::stringstream console;
+	std::string outputFileName = "output.txt";
 	string dataType, log0, log1, log2;
 	//cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
 	while (loopActive)
 	{
+		console.str ("");
 		log0, log1, log2 = "";
 		cout << "Please enter the size of the array: ";
 		cin >> size;
+		if (cin.fail ())
+		{
+			cin.clear (); // clears failure state
+			cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
+			cout << "INPUT NOT ALLOWED!" << endl;
+			continue;
+		}
 		if (size > SORT_MAX_SIZE)
 		{
+			cin.clear (); // clears failure state
+			cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
 			cout << "Size may not exceed " << SORT_MAX_SIZE << endl;
 			continue;
 		}
 		cout << "What is the data type (int/double/char/string):";
 		cin >> dataType;
+		if (cin.fail ())
+		{
+			cin.clear (); // clears failure state
+			cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
+			cout << "INPUT NOT ALLOWED!" << endl;
+			continue;
+		}
 		if (dataType == "int")
 		{
 			MultiArray<int> myarray (size);
@@ -51,15 +70,25 @@ void CommandLineUI::enterLoop ()
 			{
 				cout << "Please enter int #" << i + 1 << ": ";
 				cin >> myarray[i];
+				if (cin.fail ())
+				{
+					cin.clear (); // clears failure state
+					cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
+					cout << "INPUT NOT ALLOWED!" << endl;
+					i--;
+					continue;
+				}
 			}
 			MultiArray<int> myarray1 (myarray);
 			MultiArray<int> myarray2 (myarray);
 			MultiSort<int>::insertionSort (myarray, size, log0);
 			MultiSort<int>::quickSort (myarray1, 0, size - 1, log1);
 			MultiSort<int>::mergeSort (myarray2, 0, size - 1, log2);
-			cout << "Insertion Sort" << endl << log0 << endl;
-			cout << "Quick Sort" << endl << log1 << endl;
-			cout << "Merge Sort" << endl << log2 << endl;
+			console << "Insertion Sort" << endl << log0 << endl;
+			console << "Quick Sort" << endl << log1 << endl;
+			console << "Merge Sort" << endl << log2 << endl;
+			cout << console.str ();
+			FileIO::strToFile (console.str (), outputFileName);
 		}
 		else if (dataType == "double")
 		{
@@ -68,15 +97,25 @@ void CommandLineUI::enterLoop ()
 			{
 				cout << "Please enter double #" << i + 1 << ": ";
 				cin >> myarray[i];
+				if (cin.fail ())
+				{
+					cin.clear (); // clears failure state
+					cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
+					cout << "INPUT NOT ALLOWED!" << endl;
+					i--;
+					continue;
+				}
 			}
 			MultiArray<double> myarray1 (myarray);
 			MultiArray<double> myarray2 (myarray);
 			MultiSort<double>::insertionSort (myarray, size, log0);
 			MultiSort<double>::quickSort (myarray1, 0, size - 1, log1);
 			MultiSort<double>::mergeSort (myarray2, 0, size - 1, log2);
-			cout << "Insertion Sort" << endl << log0 << endl;
-			cout << "Quick Sort" << endl << log1 << endl;
-			cout << "Merge Sort" << endl << log2 << endl;
+			console << "Insertion Sort" << endl << log0 << endl;
+			console << "Quick Sort" << endl << log1 << endl;
+			console << "Merge Sort" << endl << log2 << endl;
+			cout << console.str ();
+			FileIO::strToFile (console.str (), outputFileName);
 		}
 		else if (dataType == "char")
 		{
@@ -85,15 +124,25 @@ void CommandLineUI::enterLoop ()
 			{
 				cout << "Please enter char #" << i + 1 << ": ";
 				cin >> myarray[i];
+				if (cin.fail ())
+				{
+					cin.clear (); // clears failure state
+					cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
+					cout << "INPUT NOT ALLOWED!" << endl;
+					i--;
+					continue;
+				}
 			}
 			MultiArray<char> myarray1 (myarray);
 			MultiArray<char> myarray2 (myarray);
 			MultiSort<char>::insertionSort (myarray, size, log0);
 			MultiSort<char>::quickSort (myarray1, 0, size - 1, log1);
 			MultiSort<char>::mergeSort (myarray2, 0, size - 1, log2);
-			cout << "Insertion Sort" << endl << log0 << endl;
-			cout << "Quick Sort" << endl << log1 << endl;
-			cout << "Merge Sort" << endl << log2 << endl;
+			console << "Insertion Sort" << endl << log0 << endl;
+			console << "Quick Sort" << endl << log1 << endl;
+			console << "Merge Sort" << endl << log2 << endl;
+			cout << console.str ();
+			FileIO::strToFile (console.str (), outputFileName);
 		}
 		else if (dataType == "string")
 		{
@@ -103,15 +152,31 @@ void CommandLineUI::enterLoop ()
 			{
 				cout << "Please enter string #" << i + 1 << ": ";
 				getline (cin, myarray[i]);
+				if (cin.fail ())
+				{
+					cin.clear (); // clears failure state
+					cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
+					cout << "INPUT NOT ALLOWED!" << endl;
+					i--;
+					continue;
+				}
 			}
 			MultiArray<string> myarray1 (myarray);
 			MultiArray<string> myarray2 (myarray);
 			MultiSort<string>::insertionSort (myarray, size, log0);
 			MultiSort<string>::quickSort (myarray1, 0, size - 1, log1);
 			MultiSort<string>::mergeSort (myarray2, 0, size - 1, log2);
-			cout << "Insertion Sort" << endl << log0 << endl;
-			cout << "Quick Sort" << endl << log1 << endl;
-			cout << "Merge Sort" << endl << log2 << endl;
+			console << "Insertion Sort" << endl << log0 << endl;
+			console << "Quick Sort" << endl << log1 << endl;
+			console << "Merge Sort" << endl << log2 << endl;
+			cout << console.str ();
+			FileIO::strToFile (console.str (), outputFileName);
+		}
+		else
+		{
+			cin.clear (); // clears failure state
+			cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
+			cout << "Type must be int/double/char/string!" << endl;
 		}
 	}
 }
