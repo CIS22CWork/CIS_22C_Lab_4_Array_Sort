@@ -7,6 +7,10 @@ Lab 4
 Used Microsoft Visual Studio 2017
 
 MultiSort class
+contains recursive methods for
+-insertion sort
+-quicksort
+-merge sort
 */
 #ifndef MULTI_SORT_H
 #define MULTI_SORT_H
@@ -61,11 +65,18 @@ void MultiSort<T>::insertionSort (MultiArray<T> &arr, int n, std::string &log)
 	arr[j + 1] = last;
 	log += arr.toString ();
 }
-/* This function takes last element as pivot, places
+/* takes last element as pivot, places
 the pivot element at its correct position in sorted
 array, and places all smaller (smaller than pivot)
 to left of pivot and all greater elements to right
-of pivot */
+of pivot
+@pre None
+@post None
+@param arr the template array
+@param low starting index
+@param high ending index
+@return the partition
+*/
 template< class T >
 int MultiSort<T>::partition (MultiArray<T> &arr, int low, int high)
 {
@@ -91,10 +102,15 @@ int MultiSort<T>::partition (MultiArray<T> &arr, int low, int high)
 	return (i + 1);
 }
 
-/* The main function that implements QuickSort
-arr[] --> Array to be sorted,
-low  --> Starting index,
-high  --> Ending index */
+/* recursive quick sort algorithm
+@pre None
+@post outputs array contents to log at each recursion depth
+@param arr the template array
+@param low starting index
+@param high ending index
+@param log step log
+@return None
+*/
 template< class T >
 void MultiSort<T>::quickSort (MultiArray<T> &arr, int low, int high, std::string &log)
 {
@@ -112,9 +128,15 @@ void MultiSort<T>::quickSort (MultiArray<T> &arr, int low, int high, std::string
 	log += arr.toString ();
 }
 
-// Merges two subarrays of arr[].
-// First subarray is arr[l..m]
-// Second subarray is arr[m+1..r]
+/* Merges two subarrays of arr[]
+@pre First subarray is arr[l..m], Second subarray is arr[m+1..r]
+@post template array is merged
+@param arr the template array
+@param l
+@param m
+@param r
+@return None
+*/
 template< class T >
 void MultiSort<T>::merge (MultiArray<T> &arr, int l, int m, int r)
 {
@@ -170,8 +192,15 @@ void MultiSort<T>::merge (MultiArray<T> &arr, int l, int m, int r)
 	}
 }
 
-/* l is for left index and r is right index of the
-sub-array of arr to be sorted */
+/* recursive merge sort algorithm
+@pre None
+@post outputs array contents to log at each recursion depth
+@param arr the template array
+@param l is for left index
+@param r is right index
+@param log step log
+@return None
+*/
 template< class T >
 void MultiSort<T>::mergeSort (MultiArray<T> &arr, int l, int r, std::string &log)
 {
