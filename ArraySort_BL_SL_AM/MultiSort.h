@@ -25,7 +25,7 @@ private:
 	unsigned int size;
 public:
 	static void insertionSort (MultiArray<T> &arr, int n, std::string &log);
-	static int partition (MultiArray<T> &arr, int low, int high);
+	static int partition (MultiArray<T> &arr, int low, int high, int i, int j);
 	static void quickSort (MultiArray<T> &arr, int low, int high, std::string &log);
 	static void merge (MultiArray<T> &arr, int l, int m, int r);
 	static void mergeSort (MultiArray<T> &arr, int l, int r, std::string &log);
@@ -78,28 +78,30 @@ of pivot
 @return the partition
 */
 template< class T >
-int MultiSort<T>::partition (MultiArray<T> &arr, int low, int high)
+int MultiSort<T>::partition (MultiArray<T> &arr, int low, int high, int i, int j)
 {
-	T pivot = arr[high];    // pivot
+	int r;
 	T tmp;
-	int i = (low - 1);  // Index of smaller element
-
-	for (int j = low; j <= high - 1; j++)
+	if (j <= high - 1)
 	{
-		// If current element is smaller than or
-		// equal to pivot
-		if (arr[j] <= pivot)
+		if (arr[j] <= arr[high])
 		{
-			i++;    // increment index of smaller element
+			i++;
 			tmp = arr[i];
 			arr[i] = arr[j];
 			arr[j] = tmp;
 		}
+		j++;
+		r = partition (arr, low, high, i, j);
 	}
-	tmp = arr[i + 1];
-	arr[i + 1] = arr[high];
-	arr[high] = tmp;
-	return (i + 1);
+	else
+	{
+		tmp = arr[i + 1];
+		arr[i + 1] = arr[high];
+		arr[high] = tmp;
+		r = i + 1;
+	}
+	return r;
 }
 
 /* recursive quick sort algorithm
@@ -118,7 +120,7 @@ void MultiSort<T>::quickSort (MultiArray<T> &arr, int low, int high, std::string
 	{
 		/* pi is partitioning index, arr[p] is now
 		at right place */
-		int pi = partition (arr, low, high);
+		int pi = partition (arr, low, high, low - 1, low);
 
 		// Separately sort elements before
 		// partition and after partition
