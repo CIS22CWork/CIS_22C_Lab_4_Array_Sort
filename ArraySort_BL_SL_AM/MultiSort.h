@@ -24,12 +24,38 @@ private:
 	T* myarray;
 	unsigned int size;
 public:
+	static void insertionPart (MultiArray<T> &arr, int n, int j, T last);
 	static void insertionSort (MultiArray<T> &arr, int n, std::string &log);
 	static int partition (MultiArray<T> &arr, int low, int high, int i, int j);
 	static void quickSort (MultiArray<T> &arr, int low, int high, std::string &log);
 	static void merge (MultiArray<T> &arr, int l, int m, int r);
 	static void mergeSort (MultiArray<T> &arr, int l, int r, std::string &log);
 };
+
+/* insertion algorithm helper method
+@pre j is 0 or more
+@post move elements ahead of their current position
+@param arr the template array
+@param n the size of the array
+@param j the index
+@param last the last value of the array before move
+@return None
+*/
+template< class T >
+void MultiSort<T>::insertionPart (MultiArray<T> &arr, int n, int j, T last)
+{
+	// Insert last element at its correct position
+	// in sorted array.
+	if (j >= 0 && arr[j] > last)
+	{
+		arr[j + 1] = arr[j];
+		insertionPart (arr, n, --j, last);
+	}
+	else
+	{
+		arr[j + 1] = last;
+	}
+}
 
 /* Recursive Insertion Algorithm
 @pre None
@@ -49,20 +75,11 @@ void MultiSort<T>::insertionSort (MultiArray<T> &arr, int n, std::string &log)
 	// Sort first n-1 elements
 	insertionSort (arr, n - 1, log);
 
-	// Insert last element at its correct position
-	// in sorted array.
-	T last = arr[n - 1];
-	int j = n - 2;
-
 	/* Move elements of arr[0..i-1], that are
 	greater than key, to one position ahead
 	of their current position */
-	while (j >= 0 && arr[j] > last)
-	{
-		arr[j + 1] = arr[j];
-		j--;
-	}
-	arr[j + 1] = last;
+	insertionPart (arr, n, n - 2, arr[n - 1]);
+	// log array state
 	log += arr.toString ();
 }
 /* takes last element as pivot, places
@@ -91,8 +108,7 @@ int MultiSort<T>::partition (MultiArray<T> &arr, int low, int high, int i, int j
 			arr[i] = arr[j];
 			arr[j] = tmp;
 		}
-		j++;
-		r = partition (arr, low, high, i, j);
+		r = partition (arr, low, high, i, ++j);
 	}
 	else
 	{
