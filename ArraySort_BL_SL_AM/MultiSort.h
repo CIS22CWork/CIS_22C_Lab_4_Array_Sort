@@ -28,7 +28,7 @@ public:
 	static void insertionSort (MultiArray<T> &arr, int n, std::string &log);
 	static int partition (MultiArray<T> &arr, int low, int high, int i, int j);
 	static void quickSort (MultiArray<T> &arr, int low, int high, std::string &log);
-	static void merge (MultiArray<T> &arr, int l, int m, int r);
+	static void merge (MultiArray<T> &arr, int l, int m, int r, int i, int j, int k);
 	static void mergeSort (MultiArray<T> &arr, int l, int r, std::string &log);
 };
 
@@ -156,57 +156,44 @@ void MultiSort<T>::quickSort (MultiArray<T> &arr, int low, int high, std::string
 @return None
 */
 template< class T >
-void MultiSort<T>::merge (MultiArray<T> &arr, int l, int m, int r)
+void MultiSort<T>::merge (MultiArray<T> &arr, int l, int m, int r, int i, int j, int k)
 {
-	int i, j, k;
 	int n1 = m - l + 1;
 	int n2 = r - m;
-
-	/* create temp arrays */
-	T *L = new T[n1];
-	T *R = new T[n2];
-
-	/* Copy data to temp arrays L[] and R[] */
-	for (i = 0; i < n1; i++)
-		L[i] = arr[l + i];
-	for (j = 0; j < n2; j++)
-		R[j] = arr[m + 1 + j];
-
 	/* Merge the temp arrays back into arr[l..r]*/
-	i = 0; // Initial index of first subarray
-	j = 0; // Initial index of second subarray
-	k = l; // Initial index of merged subarray
-	while (i < n1 && j < n2)
+	if (i < n1 && j < n2)
 	{
-		if (L[i] <= R[j])
+		if (arr[l + i] <= arr[m + 1 + j])
 		{
-			arr[k] = L[i];
-			i++;
+			arr[k] = arr[l + i];
+			merge (arr, l, m, r, i + 1, j, k + 1);
 		}
 		else
 		{
-			arr[k] = R[j];
-			j++;
+			arr[k] = arr[m + 1 + j];
+			merge (arr, l, m, r, i, j + 1, k + 1);
 		}
-		k++;
 	}
-
-	/* Copy the remaining elements of L[], if there
-	are any */
-	while (i < n1)
+	else
 	{
-		arr[k] = L[i];
-		i++;
-		k++;
-	}
 
-	/* Copy the remaining elements of R[], if there
-	are any */
-	while (j < n2)
-	{
-		arr[k] = R[j];
-		j++;
-		k++;
+		/* Copy the remaining elements of L[], if there
+		are any */
+		while (i < n1)
+		{
+			arr[k] = arr[l + i];
+			i++;
+			k++;
+		}
+
+		/* Copy the remaining elements of R[], if there
+		are any */
+		while (j < n2)
+		{
+			arr[k] = arr[m + 1 + j];
+			j++;
+			k++;
+		}
 	}
 }
 
@@ -232,7 +219,7 @@ void MultiSort<T>::mergeSort (MultiArray<T> &arr, int l, int r, std::string &log
 		mergeSort (arr, l, m, log);
 		mergeSort (arr, m + 1, r, log);
 
-		merge (arr, l, m, r);
+		merge (arr, l, m, r, 0, 0, l);
 	}
 	log += arr.toString ();
 }
