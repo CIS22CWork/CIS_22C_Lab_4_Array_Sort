@@ -30,6 +30,7 @@ public:
 	MultiArray (const MultiArray<T> &target);
 	virtual ~MultiArray ();
 	void setValue (unsigned int elem, T val);
+	void clear();
 	std::string toString ();
 
 	T &operator[] (unsigned int);
@@ -77,6 +78,17 @@ template< class T >
 void MultiArray<T>::setValue (unsigned int elem, T val)
 {
 	myarray[elem] = val;
+}
+
+/* clears array data
+@pre None
+@post deletes array pointer
+@return None
+*/
+template< class T >
+void MultiArray<T>::clear ()
+{
+	delete[] myarray;
 }
 
 /* displays all elements of the array

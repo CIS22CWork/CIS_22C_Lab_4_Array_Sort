@@ -28,7 +28,9 @@ public:
 	static void insertionSort (MultiArray<T> &arr, int n, std::string &log);
 	static int partition (MultiArray<T> &arr, int low, int high, int i, int j);
 	static void quickSort (MultiArray<T> &arr, int low, int high, std::string &log);
-	static void merge (MultiArray<T> &arr, int l, int m, int r, int i, int j, int k);
+	static void mergeAssign (MultiArray<T> &arr, int l, int m, int r, T L[], T R[], int i, int j);
+	static void mergeArray (MultiArray<T> &arr, int l, int m, int r, T L[], T R[], int i, int j, int k);
+	static void merge (MultiArray<T> &arr, int l, int m, int r);
 	static void mergeSort (MultiArray<T> &arr, int l, int r, std::string &log);
 };
 
@@ -143,35 +145,70 @@ void MultiSort<T>::quickSort (MultiArray<T> &arr, int low, int high, std::string
 		quickSort (arr, low, pi - 1, log);
 		quickSort (arr, pi + 1, high, log);
 	}
+	// log array state
 	log += arr.toString ();
+}
+
+/* Assign two temporary two subarrays of arr[]
+@pre First subarray is arr[l..m], Second subarray is arr[m+1..r]
+@post template array is merged
+@param arr the template array
+@param l left
+@param m middle
+@param r right
+@param L left temp array
+@param R right temp array
+@param i left index
+@param j right index
+@return None
+*/
+template< class T >
+void MultiSort<T>::mergeAssign (MultiArray<T> &arr, int l, int m, int r, T L[], T R[], int i, int j)
+{
+	int n1 = m - l + 1;
+	int n2 = r - m;
+	if (i < n1)
+	{
+		L[i] = arr[l + i];
+	}
+	if (j < n2)
+	{
+		R[j] = arr[m + 1 + j];
+	}
+	if (i < n1 && j < n2)
+		mergeAssign (arr, l, m, r, L, R, i + 1, j + 1);
 }
 
 /* Merges two subarrays of arr[]
 @pre First subarray is arr[l..m], Second subarray is arr[m+1..r]
 @post template array is merged
 @param arr the template array
-@param l
-@param m
-@param r
+@param l left
+@param m middle
+@param r right
+@param L left temp array
+@param R right temp array
+@param i left index
+@param j right index
+@param k array index
 @return None
 */
 template< class T >
-void MultiSort<T>::merge (MultiArray<T> &arr, int l, int m, int r, int i, int j, int k)
+void MultiSort<T>::mergeArray (MultiArray<T> &arr, int l, int m, int r, T L[], T R[], int i, int j, int k)
 {
 	int n1 = m - l + 1;
 	int n2 = r - m;
-	/* Merge the temp arrays back into arr[l..r]*/
 	if (i < n1 && j < n2)
 	{
-		if (arr[l + i] <= arr[m + 1 + j])
+		if (L[i] <= R[j])
 		{
-			arr[k] = arr[l + i];
-			merge (arr, l, m, r, i + 1, j, k + 1);
+			arr[k] = L[i];
+			mergeArray (arr, l, m, r, L, R, i + 1, j, k + 1);
 		}
 		else
 		{
-			arr[k] = arr[m + 1 + j];
-			merge (arr, l, m, r, i, j + 1, k + 1);
+			arr[k] = R[j];
+			mergeArray (arr, l, m, r, L, R, i, j + 1, k + 1);
 		}
 	}
 	else
@@ -179,22 +216,45 @@ void MultiSort<T>::merge (MultiArray<T> &arr, int l, int m, int r, int i, int j,
 
 		/* Copy the remaining elements of L[], if there
 		are any */
-		while (i < n1)
+		if (i < n1)
 		{
-			arr[k] = arr[l + i];
-			i++;
-			k++;
+			arr[k] = L[i];
+			mergeArray (arr, l, m, r, L, R, i + 1, j, k + 1);
 		}
 
 		/* Copy the remaining elements of R[], if there
 		are any */
-		while (j < n2)
+		if (j < n2)
 		{
-			arr[k] = arr[m + 1 + j];
-			j++;
-			k++;
+			arr[k] = R[j];
+			mergeArray (arr, l, m, r, L, R, i, j + 1, k + 1);
 		}
 	}
+}
+
+/* Merges two subarrays of arr[]
+@pre First subarray is arr[l..m], Second subarray is arr[m+1..r]
+@post template array is merged
+@param arr the template array
+@param l left
+@param m middle
+@param r right
+@return None
+*/
+template< class T >
+void MultiSort<T>::merge (MultiArray<T> &arr, int l, int m, int r)
+{
+	int n1 = m - l + 1;
+	int n2 = r - m;
+	/* create temp arrays */
+	T* L = new T[n1];
+	T* R = new T[n2];
+	/* Copy data to temp arrays L[] and R[] */
+	mergeAssign (arr, l, m, r, L, R, 0, 0);
+	/* Merge the temp arrays back into arr[l..r]*/
+	mergeArray (arr, l, m, r, L, R, 0, 0, l);
+	delete[] L;
+	delete[] R;
 }
 
 /* recursive merge sort algorithm
@@ -219,8 +279,9 @@ void MultiSort<T>::mergeSort (MultiArray<T> &arr, int l, int r, std::string &log
 		mergeSort (arr, l, m, log);
 		mergeSort (arr, m + 1, r, log);
 
-		merge (arr, l, m, r, 0, 0, l);
+		merge (arr, l, m, r);
 	}
+	// log array state
 	log += arr.toString ();
 }
 #endif

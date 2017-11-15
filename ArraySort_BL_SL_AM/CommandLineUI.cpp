@@ -30,6 +30,7 @@ CommandLineUI::CommandLineUI ()
 void CommandLineUI::enterLoop ()
 {
 	cout << "Welcome to the array sorter! " << endl;
+	cout << "The sort steps will be saved to \"output.txt\" and be overwritten every sort." << endl;
 	bool loopActive = true;
 	unsigned int size;
 	unsigned int i;
@@ -55,6 +56,13 @@ void CommandLineUI::enterLoop ()
 			cin.clear (); // clears failure state
 			cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
 			cout << "Size may not exceed " << SORT_MAX_SIZE << endl;
+			continue;
+		}
+		if (size < 1)
+		{
+			cin.clear (); // clears failure state
+			cin.ignore (std::numeric_limits<std::streamsize>::max (), '\n'); // discards "bad" characters
+			cout << "Size must be larger than zero" << endl;
 			continue;
 		}
 		cout << "What is the data type (int/double/char/string):";
@@ -84,6 +92,10 @@ void CommandLineUI::enterLoop ()
 			}
 			MultiArray<int> myarray1 (myarray);
 			MultiArray<int> myarray2 (myarray);
+			// log initial array
+			log0 += myarray.toString ();
+			log1 += myarray1.toString ();
+			log2 += myarray2.toString ();
 			MultiSort<int>::insertionSort (myarray, size, log0);
 			MultiSort<int>::quickSort (myarray1, 0, size - 1, log1);
 			MultiSort<int>::mergeSort (myarray2, 0, size - 1, log2);
@@ -92,6 +104,10 @@ void CommandLineUI::enterLoop ()
 			console << "Merge Sort" << endl << log2 << endl;
 			cout << console.str ();
 			FileIO::strToFile (console.str (), outputFileName);
+			// clear arrays for next loop
+			myarray.clear ();
+			myarray1.clear ();
+			myarray2.clear ();
 		}
 		else if (dataType == "double")
 		{
@@ -111,6 +127,10 @@ void CommandLineUI::enterLoop ()
 			}
 			MultiArray<double> myarray1 (myarray);
 			MultiArray<double> myarray2 (myarray);
+			// log initial array
+			log0 += myarray.toString ();
+			log1 += myarray1.toString ();
+			log2 += myarray2.toString ();
 			MultiSort<double>::insertionSort (myarray, size, log0);
 			MultiSort<double>::quickSort (myarray1, 0, size - 1, log1);
 			MultiSort<double>::mergeSort (myarray2, 0, size - 1, log2);
@@ -119,6 +139,10 @@ void CommandLineUI::enterLoop ()
 			console << "Merge Sort" << endl << log2 << endl;
 			cout << console.str ();
 			FileIO::strToFile (console.str (), outputFileName);
+			// clear arrays for next loop
+			myarray.clear ();
+			myarray1.clear ();
+			myarray2.clear ();
 		}
 		else if (dataType == "char")
 		{
@@ -138,6 +162,10 @@ void CommandLineUI::enterLoop ()
 			}
 			MultiArray<char> myarray1 (myarray);
 			MultiArray<char> myarray2 (myarray);
+			// log initial array
+			log0 += myarray.toString ();
+			log1 += myarray1.toString ();
+			log2 += myarray2.toString ();
 			MultiSort<char>::insertionSort (myarray, size, log0);
 			MultiSort<char>::quickSort (myarray1, 0, size - 1, log1);
 			MultiSort<char>::mergeSort (myarray2, 0, size - 1, log2);
@@ -146,6 +174,10 @@ void CommandLineUI::enterLoop ()
 			console << "Merge Sort" << endl << log2 << endl;
 			cout << console.str ();
 			FileIO::strToFile (console.str (), outputFileName);
+			// clear arrays for next loop
+			myarray.clear ();
+			myarray1.clear ();
+			myarray2.clear ();
 		}
 		else if (dataType == "string")
 		{
@@ -166,6 +198,10 @@ void CommandLineUI::enterLoop ()
 			}
 			MultiArray<string> myarray1 (myarray);
 			MultiArray<string> myarray2 (myarray);
+			// log initial array
+			log0 += myarray.toString ();
+			log1 += myarray1.toString ();
+			log2 += myarray2.toString ();
 			MultiSort<string>::insertionSort (myarray, size, log0);
 			MultiSort<string>::quickSort (myarray1, 0, size - 1, log1);
 			MultiSort<string>::mergeSort (myarray2, 0, size - 1, log2);
@@ -174,6 +210,10 @@ void CommandLineUI::enterLoop ()
 			console << "Merge Sort" << endl << log2 << endl;
 			cout << console.str ();
 			FileIO::strToFile (console.str (), outputFileName);
+			// clear arrays for next loop
+			myarray.clear ();
+			myarray1.clear ();
+			myarray2.clear ();
 		}
 		else
 		{
