@@ -43,6 +43,7 @@ public:
 template< class T >
 MultiArray<T>::MultiArray ()
 {
+	size = 0;
 }
 template< class T >
 MultiArray<T>::MultiArray (unsigned int s)
@@ -81,14 +82,18 @@ void MultiArray<T>::setValue (unsigned int elem, T val)
 }
 
 /* clears array data
-@pre None
+@pre size is more than 0
 @post deletes array pointer
 @return None
 */
 template< class T >
 void MultiArray<T>::clear ()
 {
-	delete[] myarray;
+	if (size > 0)
+	{
+		delete[] myarray;
+		size = 0;
+	}
 }
 
 /* displays all elements of the array

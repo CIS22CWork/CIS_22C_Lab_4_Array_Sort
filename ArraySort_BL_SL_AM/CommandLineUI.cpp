@@ -41,7 +41,9 @@ void CommandLineUI::enterLoop ()
 	while (loopActive)
 	{
 		console.str ("");
-		log0, log1, log2 = "";
+		log0 = "";
+		log1 = "";
+		log2 = "";
 		cout << "Please enter the size of the array: ";
 		cin >> size;
 		if (cin.fail ())

@@ -3,96 +3,18 @@ CIS 22C
 Fall 2017
 Lab 4
 Insertion Sort
-0      rghghfghfghfgf
-1      fghf fgh fghfgh fgh
-2       ghrstsnrth rt sr
-3      tCXXVBxvb 
-4      fff ff
------------------------------
-0      fghf fgh fghfgh fgh
-1      rghghfghfghfgf
-2       ghrstsnrth rt sr
-3      tCXXVBxvb 
-4      fff ff
------------------------------
-0       ghrstsnrth rt sr
-1      fghf fgh fghfgh fgh
-2      rghghfghfghfgf
-3      tCXXVBxvb 
-4      fff ff
------------------------------
-0       ghrstsnrth rt sr
-1      fghf fgh fghfgh fgh
-2      rghghfghfghfgf
-3      tCXXVBxvb 
-4      fff ff
------------------------------
-0       ghrstsnrth rt sr
-1      fff ff
-2      fghf fgh fghfgh fgh
-3      rghghfghfghfgf
-4      tCXXVBxvb 
------------------------------
-0      0
+0      1
 -----------------------------
 
 Quick Sort
-0      rghghfghfghfgf
-1      fghf fgh fghfgh fgh
-2       ghrstsnrth rt sr
-3      tCXXVBxvb 
-4      fff ff
+0      1
 -----------------------------
-0       ghrstsnrth rt sr
-1      fff ff
-2      rghghfghfghfgf
-3      tCXXVBxvb 
-4      fghf fgh fghfgh fgh
------------------------------
-0       ghrstsnrth rt sr
-1      fff ff
-2      fghf fgh fghfgh fgh
-3      tCXXVBxvb 
-4      rghghfghfghfgf
------------------------------
-0       ghrstsnrth rt sr
-1      fff ff
-2      fghf fgh fghfgh fgh
-3      rghghfghfghfgf
-4      tCXXVBxvb 
------------------------------
-0       ghrstsnrth rt sr
-1      fff ff
-2      fghf fgh fghfgh fgh
-3      rghghfghfghfgf
-4      tCXXVBxvb 
------------------------------
-0       ghrstsnrth rt sr
-1      fff ff
-2      fghf fgh fghfgh fgh
-3      rghghfghfghfgf
-4      tCXXVBxvb 
------------------------------
-0       ghrstsnrth rt sr
-1      fff ff
-2      fghf fgh fghfgh fgh
-3      rghghfghfghfgf
-4      tCXXVBxvb 
------------------------------
-0       ghrstsnrth rt sr
-1      fff ff
-2      fghf fgh fghfgh fgh
-3      rghghfghfghfgf
-4      tCXXVBxvb 
------------------------------
-0      0
------------------------------
-0      0
+0      1
 -----------------------------
 
 Merge Sort
-0      0
+0      1
 -----------------------------
-0      0
+0      1
 -----------------------------
 
