@@ -1,7 +1,10 @@
+De Anza College<BR>
+Manish Goel<BR>
+Fall 2017<BR>
+CIS22C Data Abstract & Structures<BR>
+
 # Instructions
 Follow all common instructions from prior labs, like those related to file and project naming, partner rating, files to be submitted etc.
-
- 
 
 Write a C++ program that will sort a template array of data using the following guidelines - you can reuse your template array class from the midterm.
 
@@ -15,4 +18,4 @@ Ask the user for the number of elements, not to exceed SORT_MAX_SIZE = 32
 <br />Upload both your project zip and the output file.
 
 # Outcome
-NOT GRADED
+Full Credit
